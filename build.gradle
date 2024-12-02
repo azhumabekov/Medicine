@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.0'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'java15'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Для JPA
+    implementation 'org.springframework.boot:spring-boot-starter-web'      // Для работы с REST API
+    runtimeOnly 'org.postgresql:postgresql'                                 // PostgreSQL Driver
+    compileOnly 'org.projectlombok:lombok'                                 // Lombok (только компиляция)
+    annotationProcessor 'org.projectlombok:lombok'                         // Генерация кода для Lombok
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Тестирование
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
