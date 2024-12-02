@@ -1,5 +1,6 @@
 package java15.service.impl;
 
+import java15.entity.Medicine;
 import java15.entity.Pharmacy;
 import java15.repository.PharmacyRepo;
 import java15.service.PharmacyService;
@@ -14,8 +15,9 @@ public class PharmacyServiceImpl implements PharmacyService {
     private final PharmacyRepo pharmacyRepo;
 
     @Override
-    public void save(Pharmacy pharmacy) {
+    public Pharmacy save(Pharmacy pharmacy) {
         pharmacyRepo.save(pharmacy);
+        return pharmacy;
     }
 
     @Override
@@ -29,16 +31,39 @@ public class PharmacyServiceImpl implements PharmacyService {
     }
 
     @Override
-    public void updateById(Long id, Pharmacy NewPharmacy) {
+    public Pharmacy updateById(Long id, Pharmacy NewPharmacy) {
         Pharmacy pharmacy = pharmacyRepo.findById(id).get();
         pharmacy.setName(NewPharmacy.getName());
         pharmacy.setAddress(NewPharmacy.getAddress());
         pharmacyRepo.save(pharmacy);
 
+        return pharmacy;
     }
 
     @Override
     public void deleteById(Long id) {
         pharmacyRepo.deleteById(id);
     }
+
+    @Override
+    public List<Medicine> findMedicinesByPharmacyId(Long id) {
+        return pharmacyRepo.findMedicinesByPharmacyId(id);
+    }
+
+    @Override
+    public Pharmacy findPharmacyByWorkerId(Long workerId) {
+        return pharmacyRepo.findPharmacyByWorkerId(workerId);
+    }
+
+    @Override
+    public List<Pharmacy> searchByName(String name) {
+        return pharmacyRepo.searchByName(name);
+    }
+
+    @Override
+    public Pharmacy getPharmacyMaxWorkers() {
+        return pharmacyRepo.getPharmacyMaxWorkers();
+    }
+
+
 }

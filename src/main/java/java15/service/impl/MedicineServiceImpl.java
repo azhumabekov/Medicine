@@ -42,8 +42,8 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public List<Medicine> sortByName(String asc, String desc) {
-        if (asc.equals("asc")) {
+    public List<Medicine> sortByName(String sortDirection) {
+        if (sortDirection.equals("asc")) {
             return medicineRepo.sortByNameForAsc();
         }
         return medicineRepo.sortByNameForDesc();

@@ -4,8 +4,6 @@ package java15.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.antlr.v4.runtime.misc.NotNull;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -18,12 +16,13 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Medicine {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "med_gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Column(unique = true)
     String name;
-    @NonNull
+    @Column(nullable = false)
     BigDecimal price;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Pharmacy> pharmacies;
 }

@@ -6,15 +6,24 @@ import java15.entity.Pharmacy;
 import java.util.List;
 
 public interface PharmacyService {
-    void save(Pharmacy pharmacy);
+    Pharmacy save(Pharmacy pharmacy);
 
     List<Pharmacy> findAll();
 
     Pharmacy findById(Long id);
 
-    void updateById(Long id, Pharmacy NewPharmacy);
+    Pharmacy updateById(Long id, Pharmacy NewPharmacy);
 
     void deleteById(Long id);
+
+
+    List<Medicine> findMedicinesByPharmacyId(Long id);
+
+    Pharmacy findPharmacyByWorkerId(Long workerId);
+
+    List<Pharmacy> searchByName(String name);
+
+    Pharmacy getPharmacyMaxWorkers();
 
 
 }

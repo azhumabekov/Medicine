@@ -18,7 +18,7 @@ public class MedicineApi {
         return medicineService.findAll();
     }
 
-    @PutMapping
+    @PostMapping
     public Medicine addMedicine(@RequestBody Medicine medicine) {
             medicineService.save(medicine);
             return medicine;
@@ -29,11 +29,25 @@ public class MedicineApi {
         medicineService.deleteById(medicine.getId());
     }
 
-    @PutMapping("/update")
-    public Medicine updateMedicine(@RequestBody Medicine medicine) {
-        medicineService.save(medicine);
-        return medicine;
+    @PutMapping("/update/{id}")
+    public Medicine updateMedicine(@PathVariable("id")Long id, @RequestBody Medicine newMedicine) {
+        medicineService.updateById(id, newMedicine);
+        return newMedicine;
     }
+
+    @GetMapping("/sort")
+    public List<Medicine> sortMedicine(@RequestBody String sortDirection) {
+        return medicineService.sortByName(sortDirection);
+    }
+
+
+    @GetMapping("/search")
+    public Medicine searchByName(@RequestParam("name") String name) {
+        return medicineService.searchByName(name);
+    }
+
+
+
 
 
 

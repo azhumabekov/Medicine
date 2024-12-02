@@ -17,6 +17,8 @@ import java.time.Period;
 public class Worker {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "worker_gen")
+    @SequenceGenerator(name = "work_gen", sequenceName = "work_seq", allocationSize = 1)
+
     Long id;
     @Column(unique = true)
     String name;

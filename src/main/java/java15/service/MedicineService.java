@@ -17,7 +17,7 @@ public interface MedicineService {
 
     void deleteById(Long id);
 
-    List<Medicine> sortByName(String asc, String desc);
+    List<Medicine> sortByName(String sortDirection);
 
     Medicine searchByName(String name);
 }

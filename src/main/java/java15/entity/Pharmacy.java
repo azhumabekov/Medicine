@@ -16,7 +16,8 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Pharmacy {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "phar_gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     Long id;
     String name;
     String address;
